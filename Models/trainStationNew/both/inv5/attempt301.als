@@ -1,0 +1,14 @@
+sig Track {
+	succs : set Track,
+	signals : set Signal
+}
+sig Junction, Entry, Exit in Track {}
+
+sig Signal {}
+sig Semaphore, Speed extends Signal {}
+
+
+pred inv5{
+all t1,t2 : Track | all j : Junction | j in t1.succs implies j in t2.succs and t1!=t2 and j!=t1
+all t: Track | t not in Track.succs implies t not in Junction
+}

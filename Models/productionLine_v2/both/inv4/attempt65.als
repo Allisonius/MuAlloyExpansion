@@ -1,0 +1,24 @@
+sig Workstation {
+	workers : set Worker,
+	succ : set Workstation
+}
+one sig begin, end in Workstation {}
+
+sig Worker {}
+sig Human, Robot extends Worker {}
+
+abstract sig Product {
+	parts : set Product	
+}
+
+sig Material extends Product {}
+
+sig Component extends Product {
+	workstation : set Workstation
+}
+
+sig Dangerous in Product {}
+
+pred inv4{
+all c : Component, m : Material, p : Product, p1 : Product, p2 : Product, p3 : Product | (c in Product and p->p1 in parts) and (m in Product and p2->p3 not in parts)
+}

@@ -1,0 +1,30 @@
+module unknown
+open util/integer [] as integer
+open util/ordering [Grade] as ordering
+sig Person {
+teaches: (set Course),
+enrolled: (set Course),
+projects: (set Project)
+}
+sig Professor in Person {}
+sig Student in Person {}
+sig Course {
+projects: (set Project),
+grades: (Person->Grade)
+}
+sig Project {}
+sig Grade {}
+pred inv5[] {
+((no p: (one Person),pr: (one Project) {
+(some s: (one Student) {
+((no (p & Student)) => (pr !in (p.projects)))
+})
+}) && (all s: (one Student) {
+(some (s.projects))
+}))
+}
+
+
+
+
+

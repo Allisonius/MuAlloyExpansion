@@ -1,0 +1,24 @@
+sig User {
+	follows : set User,
+	sees : set Photo,
+	posts : set Photo,
+	suggested : set User
+}
+
+sig Influencer extends User {}
+
+sig Photo {
+	date : one Day
+}
+sig Ad extends Photo {}
+
+sig Day {}
+
+
+pred inv8{
+all u : User | all a : Ad | u in sees.a implies
+( some y : User | a in y.posts and
+(u in follows.y ) or
+(y in suggested.u)
+)
+}

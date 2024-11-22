@@ -1,0 +1,20 @@
+sig User {
+	follows : set User,
+	sees : set Photo,
+	posts : set Photo,
+	suggested : set User
+}
+
+sig Influencer extends User {}
+
+sig Photo {
+	date : one Day
+}
+sig Ad extends Photo {}
+
+sig Day {}
+
+
+pred inv7{
+all u, s : User | some f : User | u -> f in follows && f -> s in follows && u -> s not in follows => u -> s in suggested
+}

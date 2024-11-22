@@ -1,0 +1,34 @@
+module unknown
+open util/integer [] as integer
+open util/ordering [Grade] as ordering
+sig Person {
+teaches: (set Course),
+enrolled: (set Course),
+projects: (set Project)
+}
+sig Professor in Person {}
+sig Student in Person {}
+sig Course {
+projects: (set Project),
+grades: (Person->Grade)
+}
+sig Project {}
+sig Grade {}
+pred inv13[] {
+(all g1: (one Grade) {
+(all s1: (one Student) {
+(((((Course))->(s1->g1)) in grades) => (some p1: (one Project) {
+(some g2: (one Grade) {
+(some s2: (one Student) {
+(((((Course))->(s2->g2)) in grades) && (g2 = (ordering/max[g1])) && ((((Course))->p1) in projects) && ((s2->p1) in projects))
+})
+})
+}))
+})
+})
+}
+
+
+
+
+

@@ -1,0 +1,5 @@
+Equivalent Mutant Number: 29
+Non-Equivalent Mutant Number: 75
+HigherOrder Mutant Number: 12
+Unique Test Number: 27
+Generation Time with Tests: 4739

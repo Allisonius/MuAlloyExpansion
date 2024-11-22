@@ -1,0 +1,17 @@
+sig Track {
+	succs : set Track,
+	signals : set Signal
+}
+sig Junction, Entry, Exit in Track {}
+
+sig Signal {}
+sig Semaphore, Speed extends Signal {}
+
+
+pred inv3{
+Track = Junction+Entry+Exit
+no Exit & Junction
+no Entry & Junction
+no Entry & Exit
+all t: Track | t in Exit => no t.succs
+}

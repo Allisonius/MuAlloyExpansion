@@ -1,0 +1,10 @@
+sig State {
+        trans : Event -> State
+}
+sig Init in State {}
+sig Event {}
+
+
+pred inv1{
+let k = trans.State | iden in ~k.k
+}

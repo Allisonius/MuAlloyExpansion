@@ -1,0 +1,12 @@
+module unknown
+open util/integer [] as integer
+sig File {
+link: (one File)
+}
+sig Trash in File {}
+sig Protected in File {}
+pred inv6[] {
+(all disj f1,f2: (one File) {
+(link in (f1->f2))
+})
+}

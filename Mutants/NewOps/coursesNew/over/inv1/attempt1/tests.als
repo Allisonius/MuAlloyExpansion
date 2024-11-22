@@ -1,0 +1,84 @@
+open util/ordering [Grade] as ordering
+
+pred test1 {
+some disj Person0: Person {some disj Course0, Course2, Course1: Course {some disj Project0, Project2, Project1: Project {some disj Grade0, Grade1, Grade2: Grade {
+Person = Person0
+teaches = Person0->Course0 + Person0->Course1 + Person0->Course2
+enrolled = Person0->Course0 + Person0->Course1 + Person0->Course2
+projects = Person0->Project0 + Person0->Project1 + Person0->Project2
+Course = Course0 + Course1 + Course2
+projects = Course0->Project2 + Course1->Project1 + Course2->Project0 + Course2->Project2
+grades = Course0->Person0->Grade0 + Course0->Person0->Grade1 + Course0->Person0->Grade2 + Course1->Person0->Grade0 + Course1->Person0->Grade1 + Course1->Person0->Grade2 + Course2->Person0->Grade0 + Course2->Person0->Grade1
+Project = Project0 + Project1 + Project2
+Grade = Grade0 + Grade1 + Grade2
+ordering/first = Grade0
+ordering/next = Grade0->Grade1 + Grade1->Grade2
+Professor = Person0
+Student = Person0
+inv1[]
+}}}}
+}
+run test1 for 3 but 1 steps
+pred test2 {
+some disj Person0: Person {some disj Project0, Project2, Project1: Project {some disj Grade0, Grade1, Grade2: Grade {
+Person = Person0
+no teaches
+no enrolled
+projects = Person0->Project0 + Person0->Project1 + Person0->Project2
+no Course
+no projects
+no grades
+no Course' --loop state
+Project = Project0 + Project1 + Project2
+Grade = Grade0 + Grade1 + Grade2
+ordering/first = Grade0
+ordering/next = Grade0->Grade1 + Grade1->Grade2
+Professor = Person0
+Student = Person0
+inv1[]
+}}}
+}
+run test2 for 3 but 1 steps
+pred test3 {
+some disj Person0: Person {some disj Course0, Course2, Course1: Course {some disj Grade0, Grade1, Grade2: Grade {
+Person = Person0
+teaches = Person0->Course0 + Person0->Course1 + Person0->Course2
+enrolled = Person0->Course2
+no projects
+Course = Course0 + Course1 + Course2
+no projects
+grades = Course0->Person0->Grade0 + Course0->Person0->Grade1 + Course0->Person0->Grade2 + Course1->Person0->Grade0 + Course1->Person0->Grade1 + Course1->Person0->Grade2 + Course2->Person0->Grade0 + Course2->Person0->Grade1
+no Project
+no Project' --loop state
+Grade = Grade0 + Grade1 + Grade2
+ordering/first = Grade0
+ordering/next = Grade0->Grade1 + Grade1->Grade2
+Professor = Person0
+no Student
+no Student' --loop state
+inv1[]
+}}}
+}
+run test3 for 3 but 1 steps
+pred test4 {
+some disj Course0: Course {some disj Project0, Project1: Project {some disj Grade0, Grade1, Grade2: Grade {
+no Person
+no teaches
+no enrolled
+no projects
+no Person' --loop state
+Course = Course0
+projects = Course0->Project0 + Course0->Project1
+no grades
+Project = Project0 + Project1
+Grade = Grade0 + Grade1 + Grade2
+ordering/first = Grade0
+ordering/next = Grade0->Grade1 + Grade1->Grade2
+no Professor
+no Professor' --loop state
+no Student
+no Student' --loop state
+inv1[]
+}}}
+}
+run test4 for 3 but 1 steps

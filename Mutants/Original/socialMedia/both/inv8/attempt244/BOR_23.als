@@ -1,0 +1,28 @@
+module unknown
+open util/integer [] as integer
+sig User {
+follows: (set User),
+sees: (set Photo),
+posts: (set Photo),
+suggested: (set User)
+}
+sig Influencer extends User {}
+sig Photo {
+date: (one Day)
+}
+sig Ad extends Photo {}
+sig Day {}
+pred inv8[] {
+(all u1: (one User) {
+(all ad: (one Ad) {
+(all u2: (one User) {
+(((ad !in (u2.posts)) && (ad in (u1.sees))) => ((u2 in (u1.follows)) || (u2 in (u1.suggested))))
+})
+})
+})
+}
+
+
+
+
+

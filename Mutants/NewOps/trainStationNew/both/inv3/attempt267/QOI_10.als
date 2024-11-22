@@ -1,0 +1,22 @@
+module unknown
+open util/integer [] as integer
+sig Track {
+succs: (set Track),
+signals: (set Signal)
+}
+sig Junction in Track {}
+sig Entry in Track {}
+sig Exit in Track {}
+sig Signal {}
+sig Semaphore extends Signal {}
+sig Speed extends Signal {}
+pred inv3[] {
+((no (Entry & Junction)) && (no var123456 : Exit { (no ((Entry & Junction) & var123456))}) && (no (Exit & Entry)) && (no (Exit & Junction)) && (all x: (one Track) {
+((x in Exit) => (no (x.succs)))
+}))
+}
+
+
+
+
+

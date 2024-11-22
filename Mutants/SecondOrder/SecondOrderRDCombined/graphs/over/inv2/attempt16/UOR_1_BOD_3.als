@@ -1,0 +1,10 @@
+module unknown
+open util/integer [] as integer
+sig Node {
+adj: (lone Node)
+}
+pred inv2[] {
+(all n,m: (one Node) {
+((m->n) !in adj)
+})
+}

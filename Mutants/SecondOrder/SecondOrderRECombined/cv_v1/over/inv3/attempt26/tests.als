@@ -1,0 +1,105 @@
+pred test0{
+some disj User0, Institution0: Source {some disj Id0: Id {some disj Work0, Work1, Work2: Work {
+User = User0
+profile = User0->Work0 + User0->Work1 + User0->Work2
+visible = User0->Work0 + User0->Work1 + User0->Work2
+Institution = Institution0
+Source = User0 + Institution0
+Id = Id0
+Work = Work0 + Work1 + Work2
+ids = Work0->Id0 + Work1->Id0 + Work2->Id0
+source = Work0->User0 + Work1->User0 + Work2->User0
+inv3[]
+}}}
+}
+
+run test0
+
+pred test1{
+some disj Institution0, Institution1: Source {some disj Id0: Id {some disj Work0, Work1, Work2: Work {
+no User
+no profile
+no visible
+no User' --loop state
+Institution = Institution0 + Institution1
+Source = Institution0 + Institution1
+Id = Id0
+Work = Work0 + Work1 + Work2
+ids = Work0->Id0 + Work1->Id0 + Work2->Id0
+source = Work0->Institution1 + Work1->Institution1 + Work2->Institution0
+inv3[]
+}}}
+}
+
+run test1
+
+pred test2{
+some disj Institution2, Institution0, Institution1: Source {some disj Id0: Id {some disj Work0, Work1, Work2: Work {
+no User
+no profile
+no visible
+no User' --loop state
+Institution = Institution0 + Institution1 + Institution2
+Source = Institution0 + Institution1 + Institution2
+Id = Id0
+Work = Work0 + Work1 + Work2
+ids = Work0->Id0 + Work1->Id0 + Work2->Id0
+source = Work0->Institution2 + Work1->Institution2 + Work2->Institution2
+inv3[]
+}}}
+}
+
+run test2
+
+pred test3{
+some disj User0, Institution0, Institution1: Source {some disj Id0, Id1: Id {some disj Work0, Work1: Work {
+User = User0
+profile = User0->Work1
+visible = User0->Work0
+Institution = Institution0 + Institution1
+Source = User0 + Institution0 + Institution1
+Id = Id0 + Id1
+Work = Work0 + Work1
+ids = Work0->Id1 + Work1->Id0 + Work1->Id1
+source = Work0->Institution1 + Work1->Institution1
+inv3[]
+}}}
+}
+
+run test3
+
+pred test4{
+some disj User0, Institution0: Source {some disj Id0: Id {some disj Work0: Work {
+User = User0
+no profile
+no visible
+Institution = Institution0
+Source = User0 + Institution0
+Id = Id0
+Work = Work0
+ids = Work0->Id0
+source = Work0->User0
+inv3[]
+}}}
+}
+
+run test4
+
+pred test5{
+some disj User0: Source {some disj Id0: Id {some disj Work0, Work1, Work2: Work {
+User = User0
+no profile
+visible = User0->Work2
+no Institution
+no Institution' --loop state
+Source = User0
+Id = Id0
+Work = Work0 + Work1 + Work2
+ids = Work0->Id0 + Work1->Id0 + Work2->Id0
+source = Work0->User0 + Work1->User0 + Work2->User0
+inv3[]
+}}}
+}
+
+run test5
+

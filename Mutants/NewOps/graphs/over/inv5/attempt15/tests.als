@@ -1,0 +1,26 @@
+
+pred test1 {
+some disj Node0: Node {
+Node = Node0
+adj = Node0->Node0
+inv5[]
+}
+}
+run test1 for 3 but 1 steps
+pred test2 {
+
+no Node
+no adj
+no Node' --loop state
+inv5[]
+
+}
+run test2 for 3 but 1 steps
+pred test3 {
+some disj Node0: Node {
+Node = Node0
+no adj
+inv5[]
+}
+}
+run test3 for 3 but 1 steps

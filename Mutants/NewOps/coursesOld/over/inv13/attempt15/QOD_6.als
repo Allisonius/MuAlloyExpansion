@@ -1,0 +1,26 @@
+module unknown
+open util/integer [] as integer
+open util/ordering [Grade] as ordering
+sig Person {
+teaches: (set Course),
+enrolled: (set Course),
+projects: (set Project)
+}
+sig Professor in Person {}
+sig Student in Person {}
+sig Course {
+projects: (set Project),
+grades: (Person->Grade)
+}
+sig Project {}
+sig Grade {}
+pred inv13[] {
+(((((univ))->((univ))) in (((Course)).grades)) && (all x,y: (one univ) {
+(((x->y) in (((Course)).grades)) => (ordering/gte[((univ)),y]))
+}))
+}
+
+
+
+
+

@@ -1,0 +1,14 @@
+var sig File {
+	var link : lone File
+}
+var sig Trash in File {}
+
+var sig Protected in File {}
+
+
+pred inv10{
+all f : File {
+always (f in Protected implies f in Protected)
+always (f not in Protected implies f not in Protected)
+}
+}

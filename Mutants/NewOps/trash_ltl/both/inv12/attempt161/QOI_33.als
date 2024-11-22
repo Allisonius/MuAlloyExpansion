@@ -1,0 +1,17 @@
+module unknown
+open util/integer [] as integer
+var sig File {
+var link: (lone File)
+}
+var sig Trash in File {}
+var sig Protected in File {}
+pred inv12[] {
+((some var123456 : Trash { (always (eventually (some var123456)))}) && (all f: (one File) {
+((f in Trash) => (always (f in Trash)))
+}))
+}
+
+
+
+
+

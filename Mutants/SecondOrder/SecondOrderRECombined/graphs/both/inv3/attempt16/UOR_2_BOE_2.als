@@ -1,0 +1,10 @@
+module unknown
+open util/integer [] as integer
+sig Node {
+adj: (one Node)
+}
+pred inv3[] {
+(all x,y,z: (one Node) {
+(((adj in (x->y)) && ((z->y) in adj)) => ((y = z) && (z = x)))
+})
+}

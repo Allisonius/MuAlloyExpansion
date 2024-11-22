@@ -1,0 +1,17 @@
+
+pred test1 {
+some disj Node0: Node {
+Node = Node0
+adj = Node0->Node0
+inv5[]
+}
+}
+run test1 for 3 but 1 steps
+pred test2 {
+some disj Node1, Node0: Node {
+Node = Node0 + Node1
+adj = Node0->Node0 + Node1->Node0 + Node1->Node1
+inv5[]
+}
+}
+run test2 for 3 but 1 steps

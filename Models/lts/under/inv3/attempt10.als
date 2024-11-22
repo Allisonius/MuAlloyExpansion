@@ -1,0 +1,10 @@
+sig State {
+        trans : Event -> State
+}
+sig Init in State {}
+sig Event {}
+
+
+pred inv3{
+~(State.trans).(State.trans) in State->State
+}

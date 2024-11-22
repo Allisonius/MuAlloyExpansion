@@ -1,0 +1,12 @@
+module unknown
+open util/integer [] as integer
+sig File {
+link: (set File)
+}
+sig Trash in File {}
+sig Protected in File {}
+pred inv9[] {
+(one x,y,z: (one File) {
+(((y->z) !in link) => ((x->y) in link))
+})
+}

@@ -1,0 +1,15 @@
+module unknown
+open util/integer [] as integer
+sig State {
+trans: (Event->State)
+}
+sig Init in State {}
+sig Event {}
+pred inv3[] {
+((State.trans) in (Event some->one Event))
+}
+
+
+
+
+

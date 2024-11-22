@@ -1,0 +1,18 @@
+sig Person  {
+	Tutors : set Person,
+	Teaches : set Class
+}
+sig Group {}
+
+sig Class  {
+	Groups : Person -> Group
+}
+
+sig Teacher in Person  {}
+
+sig Student in Person  {}
+
+
+pred inv11{
+not some c:Class, t:Teacher | some s:Student, g:Group | t->c not in Teaches implies c->s->g not in Groups
+}

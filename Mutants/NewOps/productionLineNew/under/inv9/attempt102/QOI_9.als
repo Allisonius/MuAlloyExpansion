@@ -1,0 +1,27 @@
+module unknown
+open util/integer [] as integer
+sig Workstation {
+workers: (set Worker),
+succ: (set Workstation)
+}
+one sig begin in Workstation {}
+one sig end in Workstation {}
+sig Worker {}
+sig Human extends Worker {}
+sig Robot extends Worker {}
+abstract sig Product {
+parts: (set Product)
+}
+sig Material extends Product {}
+sig Component extends Product {
+workstation: (set Workstation)
+}
+sig Dangerous in Product {}
+pred inv9[] {
+((end in (begin.(*succ))) && (begin in ((*succ).end)) && (all var123456 : Workstation { (succ in ((var123456 - end) lone->one var123456))}) && (no (iden & succ)))
+}
+
+
+
+
+

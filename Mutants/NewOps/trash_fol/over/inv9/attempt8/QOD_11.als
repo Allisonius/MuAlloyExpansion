@@ -1,0 +1,20 @@
+module unknown
+open util/integer [] as integer
+sig File {
+link: (set File)
+}
+sig Trash in File {}
+sig Protected in File {}
+pred inv9[] {
+((is_link[((File))]) => (!(is_link[((File))])))
+}
+pred is_link[f: File] {
+(some g: (one File) {
+((f->g) in link)
+})
+}
+
+
+
+
+

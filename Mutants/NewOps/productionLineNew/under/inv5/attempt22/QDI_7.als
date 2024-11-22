@@ -1,0 +1,33 @@
+module unknown
+open util/integer [] as integer
+sig Workstation {
+workers: (set Worker),
+succ: (set Workstation)
+}
+one sig begin in Workstation {}
+one sig end in Workstation {}
+sig Worker {}
+sig Human extends Worker {}
+sig Robot extends Worker {}
+abstract sig Product {
+parts: (set Product)
+}
+sig Material extends Product {}
+sig Component extends Product {
+workstation: (set Workstation)
+}
+sig Dangerous in Product {}
+pred inv5[] {
+(all h: (Human + Worker) {
+(all r: (one Robot) {
+(some w: (one Workstation) {
+(((h in (w.workers)) => (r !in (w.workers))) && ((r in (w.workers)) => (h !in (w.workers))))
+})
+})
+})
+}
+
+
+
+
+

@@ -1,0 +1,30 @@
+sig User {
+	follows : set User,
+	sees : set Photo,
+	posts : set Photo,
+	suggested : set User
+}
+
+sig Influencer extends User {}
+
+sig Photo {
+	date : one Day
+}
+sig Ad extends Photo {}
+
+sig Day {}
+
+
+pred inv3{
+all u, f : User, p : Photo {
+u -> p in sees => p not in Ad && u -> f in follows && f -> p in posts
+}
+
+
+
+
+
+
+
+all a: Ad, u : User | u -> a in sees
+}

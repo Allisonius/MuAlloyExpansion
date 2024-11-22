@@ -1,0 +1,23 @@
+open util/ordering[Grade]
+
+sig Person {
+	teaches : set Course,
+	enrolled : set Course,
+	projects : set Project
+}
+
+sig Professor,Student in Person {}
+
+sig Course {
+	projects : set Project,
+	grades : Person -> Grade
+}
+
+sig Project {}
+
+sig Grade {}
+
+pred inv7{
+all s: Student, tp1, tp2: Project, c : Course | 
+  (tp1 in s.projects and tp2 in s.projects and tp1 in c.projects and tp2 in c.projects) implies tp1=tp2
+}

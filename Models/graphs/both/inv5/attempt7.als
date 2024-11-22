@@ -1,0 +1,7 @@
+sig Node {
+	adj : set Node
+}
+
+pred inv5{
+all n: Node | n in n.^adj
+}

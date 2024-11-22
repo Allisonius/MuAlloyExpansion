@@ -1,0 +1,10 @@
+module unknown
+open util/integer [] as integer
+sig Node {
+adj: (some Node)
+}
+pred inv7[] {
+(lone n: (one Node) {
+(Node in ((^adj).n))
+})
+}

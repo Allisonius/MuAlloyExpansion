@@ -1,0 +1,22 @@
+module unknown
+open util/integer [] as integer
+sig Person {
+Tutors: (set Person),
+Teaches: (set Class)
+}
+sig Group {}
+sig Class {
+Groups: (Person->Group)
+}
+sig Teacher in Person {}
+sig Student in Person {}
+pred inv9[] {
+(all p1,p2: (one Teacher) {
+(((((Class)) in (p1.Teaches)) && (((Class)) in (p2.Teaches))) => (p1 != p2))
+})
+}
+
+
+
+
+

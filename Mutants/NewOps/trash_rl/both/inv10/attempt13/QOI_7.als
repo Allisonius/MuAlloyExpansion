@@ -1,0 +1,15 @@
+module unknown
+open util/integer [] as integer
+sig File {
+link: (set File)
+}
+sig Trash in File {}
+sig Protected in File {}
+pred inv10[] {
+(some var123456 : File { (no (((var123456.link) & Trash) - ((link.var123456) & Trash)))})
+}
+
+
+
+
+

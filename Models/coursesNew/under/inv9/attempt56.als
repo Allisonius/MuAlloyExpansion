@@ -1,0 +1,22 @@
+open util/ordering[Grade]
+
+sig Person {
+	teaches : set Course,
+	enrolled : set Course,
+	projects : set Project
+}
+
+sig Professor,Student in Person {}
+
+sig Course {
+	projects : set Project,
+	grades : Person -> Grade
+}
+
+sig Project {}
+
+sig Grade {}
+
+pred inv9{
+all x: Person, z : Person -x ,y : Course | x -> y in teaches and z -> y in teaches implies z-> y not in enrolled and x -> y not in enrolled
+}

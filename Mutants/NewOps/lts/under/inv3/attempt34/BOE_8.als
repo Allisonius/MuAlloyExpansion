@@ -1,0 +1,17 @@
+module unknown
+open util/integer [] as integer
+sig State {
+trans: (Event->State)
+}
+sig Init in State {}
+sig Event {}
+pred inv3[] {
+(all s: (one State),e,e1: (one Event) {
+((e = e1) => (((s->e) in (State.trans)) && ((s->e1) in (State.trans))))
+})
+}
+
+
+
+
+

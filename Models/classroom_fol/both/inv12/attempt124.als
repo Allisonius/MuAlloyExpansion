@@ -1,0 +1,18 @@
+sig Person  {
+	Tutors : set Person,
+	Teaches : set Class
+}
+sig Group {}
+
+sig Class  {
+	Groups : Person -> Group
+}
+
+sig Teacher in Person  {}
+
+sig Student in Person  {}
+
+
+pred inv12{
+all c : Class, s : Person, g : Group | some t : Person | c->s->g in Groups implies t->c in Teaches and t in Teacher
+}

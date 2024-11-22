@@ -1,0 +1,10 @@
+module unknown
+open util/integer [] as integer
+sig Node {
+adj: (set Node)
+}
+pred inv8[] {
+(one disj a,b,c: (one Node) {
+((c in (b.adj)) => (c in (a.adj)))
+})
+}
